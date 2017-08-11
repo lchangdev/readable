@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../actions/categories-action';
-import { forEach } from 'lodash';
+import { Link } from 'react-router-dom';
 
 class Categories extends Component {
   componentDidMount() {
@@ -14,7 +14,11 @@ class Categories extends Component {
         <ul>
           {
             this.props.categories.map(category => (
-              <li key={category.name}>{category.name}</li>
+              <li key={category.id}>
+                <Link to={`/category/${category.id}`}>
+                  {category.name}
+                </Link>
+              </li>
             ))
           }
         </ul>

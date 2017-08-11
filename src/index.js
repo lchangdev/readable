@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 import store from './store/store';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 ReactDOM.render(
@@ -13,8 +14,10 @@ ReactDOM.render(
    *              The magic behind Provider is React's context feature
    *              Allows connect() to work properly
    */
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <Router>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </Router>,
   document.getElementById('root'));
 registerServiceWorker();

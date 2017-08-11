@@ -19,8 +19,10 @@ export const categories = (state = {}, action) => {
       if (isEmpty(state)) {
         const intialState = {};
 
-        forEach(action.categories, (category) => {
-          intialState[generateId()] = category
+        forEach(action.categories, (category, index) => {
+          category.id = index;
+
+          intialState[index] = category
         });
 
         return intialState;
