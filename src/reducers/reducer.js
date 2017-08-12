@@ -1,5 +1,6 @@
 import { categories } from './categories-reducer';
 import { combineReducers } from 'redux';
+import { posts } from './posts-reducer';
 import { reducer as formReducer } from 'redux-form'
 
 /**
@@ -17,5 +18,6 @@ import { reducer as formReducer } from 'redux-form'
  */
 export default combineReducers({
   categories,
+  posts,
   form: formReducer
 });

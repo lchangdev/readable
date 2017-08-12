@@ -16,15 +16,15 @@ export const categories = (state = {}, action) => {
   switch(action.type) {
     case GET_CATEGORIES:
       if (isEmpty(state)) {
-        const intialState = {};
+        const initialState = {};
 
         forEach(action.categories, (category, index) => {
           category.id = index;
 
-          intialState[index] = category
+          initialState[index] = category
         });
 
-        return intialState;
+        return initialState;
       }
 
       return state;
