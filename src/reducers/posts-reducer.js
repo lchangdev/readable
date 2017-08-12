@@ -1,5 +1,5 @@
 import { forEach, isEmpty } from 'lodash';
-import { GET_POSTS } from '../actions/posts-action';
+import { GET_POSTS, NEW_POST } from '../actions/posts-action';
 
 export const posts = (state = {}, action) => {
   switch(action.type) {
@@ -17,6 +17,13 @@ export const posts = (state = {}, action) => {
       }
 
       return state;
+
+    case NEW_POST:
+      return {
+        ...state,
+        [state.length]: action.post
+      }
+
     default:
       return state;
   }

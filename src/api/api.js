@@ -1,3 +1,5 @@
+import { generateId } from '../helpers/generator';
+
 /**
  * @todo Migrate over to env variable
  */
@@ -29,4 +31,27 @@ export const fetchPosts = () => {
   return fetch(`${url}/posts`, { headers })
     .then(res => res.json())
     .then(data => data)
+}
+
+export const createPost = (post) => {
+  post.id = generateId();
+  post.timestamp = Date.now();
+
+  return fetch(`${url}/posts`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      author: post.author,
+      body: post.body,
+      category: post.category,
+      deleted: false,
+      id: post.id,
+      timestamp: post.timestamp,
+      title: post.title,
+      voteScore: 1
+    })
+  }).then(res => res.json());
 }

@@ -5,9 +5,7 @@ import { isEmpty } from 'lodash';
 
 class CategoryPage extends Component {
   componentDidMount() {
-    if (isEmpty(this.props.category)) {
-      this.props.fetchCategories();
-    }
+    this.props.fetchCategories();
   }
 
   render() {

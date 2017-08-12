@@ -34,7 +34,7 @@ class PostForm extends Component {
             <Field name="category" component="select" className="form-control">
               {
                 categories.map(category => (
-                  <option key={category.id} value={category}>{category.name}</option>
+                  <option required key={category.id} value={category.name}>{category.name}</option>
                 ))
               }
             </Field>
