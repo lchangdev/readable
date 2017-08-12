@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchCategories } from '../actions/categories-action';
 import { isEmpty } from 'lodash';
 
-class Category extends Component {
+class CategoryPage extends Component {
   componentDidMount() {
     if (isEmpty(this.props.category)) {
       this.props.fetchCategories();
@@ -37,4 +37,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Category);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryPage);
