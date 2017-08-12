@@ -8,8 +8,6 @@ export const posts = (state = {}, action) => {
         const initialState = {};
 
         forEach(action.posts, (post, index) => {
-          post.id = index;
-
           initialState[index] = post;
         });
 

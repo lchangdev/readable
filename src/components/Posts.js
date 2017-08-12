@@ -43,16 +43,24 @@ class Posts extends Component {
   }
 }
 
+function mapStateToProps({posts}, ownProps) {
+  let filteredPosts = Object.values(posts);
+
+  if (ownProps.category) {
+    filteredPosts = filteredPosts.filter(post => {
+      return post.category === ownProps.category
+    });
+  }
+
+  return {
+    posts: sortBy(filteredPosts, (post) => -post.voteScore)
+  };
+}
+
 function mapDispatchToProps(dispatch) {
   return {
     fetchPosts: () => dispatch(fetchPosts())
   }
-}
-
-function mapStateToProps({posts}) {
-  return {
-    posts: sortBy(Object.values(posts), (post) => -post.voteScore)
-  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);
