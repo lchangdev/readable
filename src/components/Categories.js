@@ -11,14 +11,15 @@ class Categories extends Component {
   render() {
     return(
       <div className="categories">
-        <ul>
+        <h1>Categories</h1>
+        <ul className="list-group">
           {
             this.props.categories.map(category => (
-              <li key={category.id}>
-                <Link to={`/category/${category.id}`}>
+              <Link key={category.id} to={`/category/${category.id}`}>
+                <li className="list-group-item">
                   {category.name}
-                </Link>
-              </li>
+                </li>
+              </Link>
             ))
           }
         </ul>

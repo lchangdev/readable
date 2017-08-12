@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../actions/categories-action';
 import { isEmpty } from 'lodash';
-import { Link, withRouter } from 'react-router-dom';
 
 class Category extends Component {
   componentDidMount() {
@@ -18,7 +17,6 @@ class Category extends Component {
 
     return(
       <div className="category">
-        <Link to="/">back</Link>
         <h1>{this.props.category[0].name}</h1>
       </div>
     );
@@ -39,4 +37,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Category));
+export default connect(mapStateToProps, mapDispatchToProps)(Category);
