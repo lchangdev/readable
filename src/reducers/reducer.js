@@ -1,6 +1,6 @@
-import { combineReducers } from 'redux';
-
 import { categories } from './categories-reducer';
+import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form'
 
 /**
  * @name reducers
@@ -15,4 +15,7 @@ import { categories } from './categories-reducer';
  *              3. Do not produce side effects
  *              Reducers are just JavaScript functions
  */
-export default combineReducers({ categories });
+export default combineReducers({
+  categories,
+  form: formReducer
+});

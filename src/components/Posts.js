@@ -7,7 +7,7 @@ class Posts extends Component {
     return(
       <div>
         <h1>Posts</h1>
-        <Link to="/post/form">Add new post</Link>
+        <Link to="/post/new">Add new post</Link>
         <table className="table">
 
         </table>
