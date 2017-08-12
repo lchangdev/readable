@@ -1,5 +1,4 @@
 import { forEach, isEmpty } from 'lodash';
-import { generateId } from '../helpers/generator.js';
 import { GET_CATEGORIES } from '../actions/categories-action';
 
 /**
