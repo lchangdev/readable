@@ -55,3 +55,24 @@ export const createPost = (post) => {
     })
   }).then(res => res.json());
 }
+
+export const editPost = (post) => {
+  return fetch(`${url}/posts`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      author: post.author,
+      body: post.body,
+      category: post.category,
+      deleted: post.deleted,
+      id: post.id,
+      timestamp: post.timestamp,
+      title: post.title
+    })
+  }).then(res => {
+    return res.json()
+  });
+};

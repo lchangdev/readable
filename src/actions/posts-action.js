@@ -1,7 +1,15 @@
 import * as API from '../api/api';
 
+export const EDIT_POST = 'EDIT_POST';
 export const GET_POSTS = 'GET_POSTS';
 export const NEW_POST = 'NEW_POST';
+
+function editPost(post) {
+  return {
+    type: EDIT_POST,
+    post
+  }
+}
 
 function getPosts(posts) {
   return {
@@ -28,5 +36,13 @@ export const createPost = (post) => dispatch => {
     .createPost(post)
     .then((data) => {
       dispatch(newPost(data));
+    });
+}
+
+export const updatePost = (post) => dispatch => {
+  return API
+    .editPost(post)
+    .then((data) => {
+      dispatch(editPost(data));
     });
 }

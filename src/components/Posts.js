@@ -23,6 +23,7 @@ class Posts extends Component {
               <th className="center">title</th>
               <th className="center">category</th>
               <th className="center">vote score</th>
+              <th />
             </tr>
           </thead>
           <tbody>
@@ -33,6 +34,9 @@ class Posts extends Component {
                   <td>{post.title}</td>
                   <td>{post.category}</td>
                   <td>{post.voteScore}</td>
+                  <td>
+                    <Link to={`/post/edit?postId=${post.id}`}>edit</Link>
+                  </td>
                 </tr>
               ))
             }
