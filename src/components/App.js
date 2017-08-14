@@ -1,6 +1,7 @@
 import CategoryPage from './CategoryPage';
 import HomePage from './HomePage';
 import PostFormPage from './PostFormPage';
+import PostPage from './PostPage';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
@@ -12,7 +13,8 @@ class App extends Component {
         <div className="col-sm-10 col-sm-offset-1">
           <Route exact path="/" component={HomePage} />
           <Route path="/category/:id" component={CategoryPage} />
-          <Route path="/post/:action" component={PostFormPage} />
+          <Route path="/post-form/:action" component={PostFormPage} />
+          <Route path="/post/:id" component={PostPage} />
         </div>
       </div>
     );

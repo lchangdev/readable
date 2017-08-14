@@ -1,3 +1,4 @@
+import PostTable from './PostTable';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/posts-action';
@@ -16,32 +17,7 @@ class Posts extends Component {
       <div>
         <h1>Posts</h1>
         <Link to="/post/new">Add new post</Link>
-        <table className="table">
-          <thead>
-            <tr>
-              <th className="center">author</th>
-              <th className="center">title</th>
-              <th className="center">category</th>
-              <th className="center">vote score</th>
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-            {
-              posts.map(post => (
-                <tr key={post.id} className="center">
-                  <td>{post.author}</td>
-                  <td>{post.title}</td>
-                  <td>{post.category}</td>
-                  <td>{post.voteScore}</td>
-                  <td>
-                    <Link to={`/post/edit?postId=${post.id}`}>edit</Link>
-                  </td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
+        <PostTable posts={posts} />
       </div>
     );
   }
