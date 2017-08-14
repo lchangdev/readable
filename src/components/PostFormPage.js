@@ -21,6 +21,8 @@ class PostFormPage extends Component {
     const { createPost, post, updatePost } = this.props;
 
     post ? updatePost(values) : createPost(values);
+
+    return this.props.history;
   }
 
   render() {
