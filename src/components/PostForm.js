@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { fetchCategories } from '../actions/categories-action';
 import { Field, reduxForm } from 'redux-form';
 import { isEmpty } from 'lodash';
-import { Redirect } from 'react-router-dom';
 
 class PostForm extends Component {
   componentDidMount() {
