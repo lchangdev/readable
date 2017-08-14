@@ -4,13 +4,13 @@ import { EDIT_POST, GET_POSTS, NEW_POST } from '../actions/posts-action';
 export const posts = (state = {}, action) => {
   switch(action.type) {
     case EDIT_POST:
-      let post;
+      let updatedPost;
 
       if (isEmpty(state)) {
-        post = action.post;
+        updatedPost = action.post;
       } else {
-        post = Object.values(state).map(post => {
-          if (post.id === action.post.id){
+        updatedPost = Object.values(state).map(post => {
+          if (post.id === action.post.id) {
             return { ...post, ...action.post }
           }
 
@@ -18,7 +18,7 @@ export const posts = (state = {}, action) => {
         });
       }
 
-      return post;
+      return updatedPost;
 
     case GET_POSTS:
       if (isEmpty(state)) {

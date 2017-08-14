@@ -57,8 +57,8 @@ export const createPost = (post) => {
 }
 
 export const editPost = (post) => {
-  return fetch(`${url}/posts`, {
-    method: 'POST',
+  return fetch(`${url}/posts/${post.id}`, {
+    method: 'PUT',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
@@ -70,9 +70,8 @@ export const editPost = (post) => {
       deleted: post.deleted,
       id: post.id,
       timestamp: post.timestamp,
-      title: post.title
+      title: post.title,
+      voteScore: post.voteScore
     })
-  }).then(res => {
-    return res.json()
-  });
+  }).then(res => res.json());
 };
