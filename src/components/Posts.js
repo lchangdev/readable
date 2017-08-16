@@ -16,7 +16,7 @@ class Posts extends Component {
     return(
       <div>
         <h1>Posts</h1>
-        <Link to="/post/new">Add new post</Link>
+        <Link to="/post-form/new">Add new post</Link>
         <PostTable posts={posts} />
       </div>
     );
@@ -24,11 +24,11 @@ class Posts extends Component {
 }
 
 function mapStateToProps({posts}, ownProps) {
-  let filteredPosts = Object.values(posts);
+  let filteredPosts = Object.values(posts).filter(post => !post.deleted);
 
   if (ownProps.category) {
     filteredPosts = filteredPosts.filter(post => {
-      return post.category === ownProps.category
+      return post.category === ownProps.category;
     });
   }
 

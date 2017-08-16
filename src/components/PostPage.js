@@ -1,8 +1,7 @@
 import PostTable from './PostTable';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions/posts-action';
-import { isEmpty } from 'lodash';
+import { deletePost, fetchPosts } from '../actions/posts-action';
 import { Link } from 'react-router-dom';
 
 class PostPage extends Component {
@@ -10,18 +9,26 @@ class PostPage extends Component {
     this.props.fetchPosts();
   }
 
+  onClickDelete(event, post) {
+    event.preventDefault();
+
+    this.props.deletePost(this.props.post[0]);
+
+    this.props.history.push('/');
+  }
+
   render() {
     const { post } = this.props;
-
-    if (isEmpty(post)) {
-      return (<div>Loading</div>)
-    }
 
     return (
       <div>
         <Link to="/">back</Link>
         <h1>Post Page</h1>
-        <PostTable posts={post} fullDetails={true} />
+        <PostTable
+          fullDetails={true}
+          posts={post}
+          onClickDelete={this.onClickDelete.bind(this)}
+        />
       </div>
     );
   }
@@ -37,6 +44,7 @@ function mapStateToProps({posts}, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    deletePost: (post) => dispatch(deletePost(post)),
     fetchPosts: () => dispatch(fetchPosts())
   }
 }

@@ -15,6 +15,8 @@ const PostTable = props => (
             props.fullDetails && 'timestamp'
           }
         </th>
+        { props.fullDetails && <th /> }
+        { props.fullDetails && <th /> }
       </tr>
     </thead>
     <tbody>
@@ -32,6 +34,19 @@ const PostTable = props => (
                   (<Link to={`/post/${post.id}`}>view</Link>)
               }
             </td>
+            {
+              props.fullDetails &&
+                <td>
+                  <Link to={`/post-form/edit?postId=${post.id}`}>edit</Link>
+                </td>
+            }
+
+            {
+                props.fullDetails &&
+                <td>
+                  <a onClick={(event) => props.onClickDelete(event)}>delete</a>
+                </td>
+            }
           </tr>
         ))
       }

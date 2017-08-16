@@ -56,6 +56,19 @@ export const createPost = (post) => {
   }).then(res => res.json());
 }
 
+export const deletePost = (post) => {
+  return fetch(`${url}/posts/${post.id}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      deleted: true
+    })
+  }).then(res => res.json());
+}
+
 export const editPost = (post) => {
   return fetch(`${url}/posts/${post.id}`, {
     method: 'PUT',
