@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deletePost, fetchPosts } from '../actions/posts-action';
 import { Link } from 'react-router-dom';
+import { head, isEmpty } from 'lodash';
 
 class PostPage extends Component {
   componentDidMount() {
@@ -13,13 +14,17 @@ class PostPage extends Component {
   onClickDelete(event, post) {
     event.preventDefault();
 
-    this.props.deletePost(this.props.post[0]);
+    this.props.deletePost(head(this.props.post));
 
     this.props.history.push('/');
   }
 
   render() {
-    const { post } = this.props;
+    const { posts } = this.props;
+
+    if (isEmpty(posts)) {
+      return (<div>loading page</div>);
+    }
 
     return (
       <div>
@@ -27,10 +32,10 @@ class PostPage extends Component {
         <h1>Post Page</h1>
         <PostTable
           fullDetails={true}
-          posts={post}
+          posts={posts}
           onClickDelete={this.onClickDelete.bind(this)}
         />
-        <Comments />
+        <Comments postId={head(posts).id} />
       </div>
     );
   }
@@ -38,7 +43,7 @@ class PostPage extends Component {
 
 function mapStateToProps({posts}, ownProps) {
   return {
-    post: Object.values(posts).filter(post => (
+    posts: Object.values(posts).filter(post => (
       post.id === ownProps.match.params.id
     ))
   };

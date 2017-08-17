@@ -27,10 +27,40 @@ export const fetchCategories = () => {
     .then(data => data.categories)
 }
 
+export const fetchComments = (postId) => {
+  return fetch(`${url}/posts/${postId}/comments`, {headers})
+    .then(res => res.json())
+    .then(data => data.comments)
+}
+
 export const fetchPosts = () => {
   return fetch(`${url}/posts`, { headers })
     .then(res => res.json())
     .then(data => data)
+}
+
+export const createComment = (comment, postId) => {
+  comment.id = generateId();
+  comment.parentId = postId;
+  comment.timestamp = Date.now();
+
+  return fetch(`${url}/comments`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      author: comment.author,
+      body: comment.body,
+      deleted: false,
+      id: comment.id,
+      parentDeleted: false,
+      parentId: comment.parentId,
+      timestamp: comment.timestamp,
+      voteScore: 1
+    })
+  }).then(res => res.json());
 }
 
 export const createPost = (post) => {
