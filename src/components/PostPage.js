@@ -1,3 +1,4 @@
+import Comments from './Comments';
 import PostTable from './PostTable';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -29,6 +30,7 @@ class PostPage extends Component {
           posts={post}
           onClickDelete={this.onClickDelete.bind(this)}
         />
+        <Comments />
       </div>
     );
   }
