@@ -24,7 +24,9 @@ class Posts extends Component {
 }
 
 function mapStateToProps({posts}, ownProps) {
-  let filteredPosts = Object.values(posts).filter(post => !post.deleted);
+  let filteredPosts = Object.values(posts).filter(post => {
+    return post ? !post.deleted : post;
+  });
 
   if (ownProps.category) {
     filteredPosts = filteredPosts.filter(post => {
