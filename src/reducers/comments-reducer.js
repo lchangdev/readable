@@ -1,7 +1,8 @@
 import { forEach, isEmpty } from 'lodash';
 import {
   FETCH_COMMENTS,
-  NEW_COMMENT
+  NEW_COMMENT,
+  UPDATE_COMMENT
 } from '../actions/comments-action';
 
 export const comments = (state = {}, action) => {
@@ -18,6 +19,12 @@ export const comments = (state = {}, action) => {
       return state;
 
     case NEW_COMMENT:
+      return {
+        ...state,
+        [action.comment.id]: action.comment
+      }
+
+    case UPDATE_COMMENT:
       return {
         ...state,
         [action.comment.id]: action.comment

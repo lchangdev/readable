@@ -2,7 +2,7 @@ import CommentForm from './CommentForm';
 import React, { Component } from 'react';
 import { capitalize, head } from 'lodash';
 import { connect } from 'react-redux';
-import { createComment, fetchComments } from '../actions/comments-action';
+import { createComment, fetchComments, updateComment } from '../actions/comments-action';
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 
@@ -17,20 +17,20 @@ class CommentFormPage extends Component {
     return comment ? comment : {};
   }
 
-  // submit(values) {
-  //   const { createComment, comment } = this.props;
-
-  //   // comment ? updateComment(values) : createComment(values);
-
-  //   return this.props.history;
-  // }
-
   submit(values) {
-    this.props.createComment(values, this.props.postId);
+    const {
+      createComment,
+      comment,
+      history,
+      postId,
+      updateComment
+    } = this.props;
+
+    comment ? updateComment(values) : createComment(values, postId);
 
     return {
-      history: this.props.history,
-      postId: this.props.postId
+      history,
+      postId
     };
   }
 
@@ -68,8 +68,8 @@ function mapStateToProps({comments}, ownProps) {
 function mapDispatchToProps(dispatch) {
   return {
     createComment: (data) => dispatch(createComment(data)),
-    fetchComments: () => dispatch(fetchComments())
-    // updateComment: (data) => dispatch(updateComment(data))
+    fetchComments: () => dispatch(fetchComments()),
+    updateComment: (data) => dispatch(updateComment(data))
   }
 }
 

@@ -1,5 +1,6 @@
 import dateFormat from 'dateformat';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CommentTable = props => (
   <table className="table">
@@ -21,6 +22,11 @@ const CommentTable = props => (
             <td>{comment.body}</td>
             <td>{comment.voteScore}</td>
             <td>{dateFormat(comment.timestamp, 'fullDate')}</td>
+            <td>
+              <Link to={`/comment-form/edit?postId=${props.postId}&commentId=${comment.id}`}>
+                edit
+              </Link>
+            </td>
           </tr>
         ))
       }

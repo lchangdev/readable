@@ -15,7 +15,10 @@ class Comments extends Component {
       <div>
         <h1>Comments</h1>
         <Link to={`/comment-form/new?postId=${this.props.postId}`}>Add new comment</Link>
-        <CommentTable comments={this.props.comments} />
+        <CommentTable
+          comments={this.props.comments}
+          postId={this.props.postId}
+        />
       </div>
     );
   }
