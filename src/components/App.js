@@ -1,4 +1,5 @@
 import CategoryPage from './CategoryPage';
+import CommentFormPage from './CommentFormPage';
 import HomePage from './HomePage';
 import PostFormPage from './PostFormPage';
 import PostPage from './PostPage';
@@ -15,6 +16,7 @@ class App extends Component {
           <Route path="/category/:id" component={CategoryPage} />
           <Route path="/post-form/:action" component={PostFormPage} />
           <Route path="/post/:id" component={PostPage} />
+          <Route path="/comment-form/:action" component={CommentFormPage} />
         </div>
       </div>
     );

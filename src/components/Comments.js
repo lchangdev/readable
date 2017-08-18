@@ -1,8 +1,8 @@
-import CommentForm from './CommentForm';
 import CommentTable from './CommentTable';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createComment, fetchComments } from '../actions/comments-action';
+import { Link } from 'react-router-dom';
 import { sortBy } from 'lodash';
 
 class Comments extends Component {
@@ -10,16 +10,12 @@ class Comments extends Component {
     this.props.fetchComments(this.props.postId);
   }
 
-  submit(values) {
-    this.props.createComment(values, this.props.postId);
-  }
-
   render() {
     return (
       <div>
         <h1>Comments</h1>
+        <Link to={`/comment-form/new?postId=${this.props.postId}`}>Add new comment</Link>
         <CommentTable comments={this.props.comments} />
-        <CommentForm onSubmit={this.submit.bind(this)} />
       </div>
     );
   }

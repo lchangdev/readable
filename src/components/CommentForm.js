@@ -31,7 +31,10 @@ class CommentForm extends Component {
 }
 
 CommentForm = reduxForm({
-  form: 'comment'
+  form: 'comment',
+  onSubmitSuccess: (config) => {
+    config.history.push(`/post/${config.postId}`);
+  }
 })(CommentForm);
 
 export default connect()(CommentForm)

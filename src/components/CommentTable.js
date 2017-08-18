@@ -9,6 +9,8 @@ const CommentTable = props => (
         <th className="center">comment</th>
         <th className="center">vote score</th>
         <th className="center">timestamp</th>
+        <th />
+        <th />
       </tr>
     </thead>
     <tbody>

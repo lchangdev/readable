@@ -1,4 +1,4 @@
-import { forEach } from 'lodash';
+import { forEach, isEmpty } from 'lodash';
 import {
   FETCH_COMMENTS,
   NEW_COMMENT
@@ -9,9 +9,13 @@ export const comments = (state = {}, action) => {
     case FETCH_COMMENTS:
       const clone = {};
 
-      forEach(action.comments, comment => clone[comment.id] = comment);
+      if (isEmpty(state)) {
+        forEach(action.comments, comment => clone[comment.id] = comment);
 
-      return clone;
+        return clone;
+      }
+
+      return state;
 
     case NEW_COMMENT:
       return {
