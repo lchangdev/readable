@@ -3,8 +3,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteComment } from '../actions/comments-action';
 import { Link } from 'react-router-dom';
+import Tablesort from 'tablesort';
 
 class CommentTable extends Component {
+  componentDidMount() {
+    new Tablesort(document.getElementById('comment-table'));
+  }
+
   onClickDelete(event, comment) {
     event.preventDefault();
 
@@ -12,14 +17,15 @@ class CommentTable extends Component {
   }
 
   render() {
+
     return (
-      <table className="table">
+      <table className="table" id="comment-table">
         <thead>
           <tr>
-            <th className="center">author</th>
-            <th className="center">comment</th>
-            <th className="center">vote score</th>
-            <th className="center">timestamp</th>
+            <th className="center pointer">author</th>
+            <th className="center pointer">comment</th>
+            <th className="center pointer">vote score</th>
+            <th className="center pointer">timestamp</th>
             <th />
             <th />
           </tr>
@@ -38,7 +44,7 @@ class CommentTable extends Component {
                   </Link>
                 </td>
                 <td>
-                  <a onClick={(event) => this.onClickDelete(event, comment)}>delete</a>
+                  <a className="pointer" onClick={(event) => this.onClickDelete(event, comment)}>delete</a>
                 </td>
               </tr>
             ))
