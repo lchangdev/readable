@@ -14,6 +14,7 @@ class Comments extends Component {
     return (
       <div>
         <h1>Comments</h1>
+        <h3>comments count: {this.props.comments.length === 0 ? 0 : this.props.comments.length }</h3>
         <Link to={`/comment-form/new?postId=${this.props.postId}`}>Add new comment</Link>
         <CommentTable
           comments={this.props.comments}
