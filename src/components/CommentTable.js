@@ -1,7 +1,7 @@
 import dateFormat from 'dateformat';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteComment } from '../actions/comments-action';
+import { deleteComment, decrement, increment } from '../actions/comments-action';
 import { Link } from 'react-router-dom';
 import Tablesort from 'tablesort';
 
@@ -16,6 +16,18 @@ class CommentTable extends Component {
     this.props.deleteComment(comment);
   }
 
+  decrement(event, comment) {
+    event.preventDefault();
+
+    this.props.decrement(comment);
+  }
+
+  increment(event, comment) {
+    event.preventDefault();
+
+    this.props.increment(comment);
+  }
+
   render() {
 
     return (
@@ -25,6 +37,8 @@ class CommentTable extends Component {
             <th className="center pointer">author</th>
             <th className="center pointer">comment</th>
             <th className="center pointer">vote score</th>
+            <th />
+            <th />
             <th className="center pointer">timestamp</th>
             <th />
             <th />
@@ -37,6 +51,8 @@ class CommentTable extends Component {
                 <td>{comment.author}</td>
                 <td>{comment.body}</td>
                 <td>{comment.voteScore}</td>
+                <td className="pointer" onClick={(event) => this.increment(event, comment)}>&#43;</td>
+                <td className="pointer" onClick={(event) => this.decrement(event, comment)}>&minus;</td>
                 <td>{dateFormat(comment.timestamp, 'fullDate')}</td>
                 <td>
                   <Link to={`/comment-form/edit?postId=${this.props.postId}&commentId=${comment.id}`}>
@@ -58,6 +74,8 @@ class CommentTable extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     deleteComment: (post) => dispatch(deleteComment(post)),
+    decrement: (comment) => dispatch(decrement(comment)),
+    increment: (comment) => dispatch(increment(comment)),
   }
 }
 

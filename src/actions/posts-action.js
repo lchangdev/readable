@@ -1,7 +1,9 @@
 import * as API from '../api/api';
 
+export const DECREMENT_POST = 'DECREMENT_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const EDIT_POST = 'EDIT_POST';
+export const INCREMENT_POST = 'INCREMENT_POST';
 export const GET_POSTS = 'GET_POSTS';
 export const NEW_POST = 'NEW_POST';
 
@@ -38,6 +40,28 @@ export const createPost = (post) => dispatch => {
     .createPost(post)
     .then((data) => {
       dispatch(newPost(data));
+    });
+}
+
+export const decrement = (post) => dispatch => {
+  return API
+    .decrementPost(post)
+    .then(data => {
+      dispatch({
+        type: DECREMENT_POST,
+        post: data
+      })
+    });
+}
+
+export const increment = (post) => dispatch => {
+  return API
+    .incrementPost(post)
+    .then(data => {
+      dispatch({
+        type: INCREMENT_POST,
+        post: data
+      })
     });
 }
 

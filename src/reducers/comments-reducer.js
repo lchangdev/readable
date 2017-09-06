@@ -1,13 +1,21 @@
 import { forEach, isEmpty } from 'lodash';
 import {
+  DECREMENT_COMMENT,
   DELETE_COMMENT,
   FETCH_COMMENTS,
+  INCREMENT_COMMENT,
   NEW_COMMENT,
   UPDATE_COMMENT
 } from '../actions/comments-action';
 
 export const comments = (state = {}, action) => {
   switch(action.type) {
+    case DECREMENT_COMMENT:
+      return {
+        ...state,
+        [action.comment.id]: action.comment
+      }
+
     case DELETE_COMMENT:
       return {
         ...state,
@@ -24,6 +32,12 @@ export const comments = (state = {}, action) => {
       }
 
       return state;
+
+    case INCREMENT_COMMENT:
+      return {
+        ...state,
+        [action.comment.id]: action.comment
+      }
 
     case NEW_COMMENT:
       return {

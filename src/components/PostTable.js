@@ -1,11 +1,25 @@
 import dateFormat from 'dateformat';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { decrement, increment } from '../actions/posts-action';
 import { Link } from 'react-router-dom';
 import Tablesort from 'tablesort';
 
 class PostTable extends Component {
   componentDidMount() {
     new Tablesort(document.getElementById('post-table'));
+  }
+
+  decrement(event, post) {
+    event.preventDefault();
+
+    this.props.decrement(post);
+  }
+
+  increment(event, post) {
+    event.preventDefault();
+
+    this.props.increment(post);
   }
 
   render() {
@@ -19,6 +33,8 @@ class PostTable extends Component {
             <th className="center pointer">title</th>
             <th className="center pointer">category</th>
             <th className="center pointer">vote score</th>
+            <th />
+            <th />
             <th className="center pointer">
               {
                 fullDetails && 'timestamp'
@@ -36,6 +52,8 @@ class PostTable extends Component {
                 <td>{post.title}</td>
                 <td>{post.category}</td>
                 <td>{post.voteScore}</td>
+                <td className="pointer" onClick={(event) => this.increment(event, post)}>&#43;</td>
+                <td className="pointer" onClick={(event) => this.decrement(event, post)}>&minus;</td>
                 <td>
                   {
                     fullDetails ?
@@ -65,4 +83,11 @@ class PostTable extends Component {
   }
 };
 
-export default PostTable;
+function mapDispatchToProps(dispatch) {
+  return {
+    decrement: (post) => dispatch(decrement(post)),
+    increment: (post) => dispatch(increment(post)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(PostTable);

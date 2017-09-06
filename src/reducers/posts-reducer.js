@@ -1,5 +1,7 @@
 import { forEach } from 'lodash';
 import {
+  DECREMENT_POST,
+  INCREMENT_POST,
   DELETE_POST,
   EDIT_POST,
   GET_POSTS,
@@ -8,6 +10,18 @@ import {
 
 export const posts = (state = {}, action) => {
   switch(action.type) {
+    case INCREMENT_POST:
+      return {
+        ...state,
+        [action.post.id]: action.post
+      }
+
+    case DECREMENT_POST:
+      return {
+        ...state,
+        [action.post.id]: action.post
+      }
+
     case DELETE_POST:
       return {
         ...state,

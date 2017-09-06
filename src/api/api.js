@@ -63,6 +63,58 @@ export const createComment = (comment, postId) => {
   }).then(res => res.json());
 }
 
+export const decrementComment = (comment) => {
+  return fetch(`${url}/comments/${comment.id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      option: 'downVote'
+    })
+  }).then(res => res.json());
+}
+
+export const incrementComment = (comment) => {
+  return fetch(`${url}/comments/${comment.id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      option: 'upVote'
+    })
+  }).then(res => res.json());
+}
+
+export const decrementPost = (post) => {
+  return fetch(`${url}/posts/${post.id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      option: 'downVote'
+    })
+  }).then(res => res.json());
+}
+
+export const incrementPost = (post) => {
+  return fetch(`${url}/posts/${post.id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      option: 'upVote'
+    })
+  }).then(res => res.json());
+}
+
 export const createPost = (post) => {
   post.id = generateId();
   post.timestamp = Date.now();
