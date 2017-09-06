@@ -1,5 +1,6 @@
 import * as API from '../api/api';
 
+export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const NEW_COMMENT = 'NEW_COMMENT';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
@@ -13,6 +14,17 @@ export const createComment = (comment, postId) => dispatch => {
         comment: data
       })
     });
+}
+
+export const deleteComment = (comment) => dispatch => {
+  return API
+    .deleteComment(comment)
+    .then(data => {
+      dispatch({
+        type: DELETE_COMMENT,
+        comment: data
+      })
+    })
 }
 
 export const fetchComments = (postId) => dispatch => {

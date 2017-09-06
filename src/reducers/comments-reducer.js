@@ -1,5 +1,6 @@
 import { forEach, isEmpty } from 'lodash';
 import {
+  DELETE_COMMENT,
   FETCH_COMMENTS,
   NEW_COMMENT,
   UPDATE_COMMENT
@@ -7,6 +8,12 @@ import {
 
 export const comments = (state = {}, action) => {
   switch(action.type) {
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        [action.comment.id]: action.comment
+      }
+
     case FETCH_COMMENTS:
       const clone = {};
 

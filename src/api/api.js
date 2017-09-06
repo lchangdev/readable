@@ -86,6 +86,19 @@ export const createPost = (post) => {
   }).then(res => res.json());
 }
 
+export const deleteComment = (comment) => {
+  return fetch(`${url}/comments/${comment.id}`, {
+    method: 'DELETE',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      delete: true
+    })
+  }).then(res => res.json());
+}
+
 export const deletePost = (post) => {
   return fetch(`${url}/posts/${post.id}`, {
     method: 'PUT',
