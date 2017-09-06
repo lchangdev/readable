@@ -24,9 +24,9 @@ class Comments extends Component {
   }
 }
 
-function mapStateToProps({comments}) {
+function mapStateToProps({comments}, ownProps) {
   let filterComments = Object.values(comments).filter(comment => {
-    return comment ? !comment.deleted : comment;
+    return comment ? !comment.deleted && comment.parentId === ownProps.postId : comment;
   });
 
   return {

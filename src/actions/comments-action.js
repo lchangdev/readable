@@ -15,9 +15,9 @@ export const createComment = (comment, postId) => dispatch => {
     });
 }
 
-export const fetchComments = () => dispatch => {
+export const fetchComments = (postId) => dispatch => {
   return API
-    .fetchComments()
+    .fetchComments(postId)
     .then(data => {
       dispatch({
         type: FETCH_COMMENTS,

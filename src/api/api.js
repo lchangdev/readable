@@ -30,7 +30,7 @@ export const fetchCategories = () => {
 export const fetchComments = (postId) => {
   return fetch(`${url}/posts/${postId}/comments`, {headers})
     .then(res => res.json())
-    .then(data => data.comments)
+    .then(data => data);
 }
 
 export const fetchPosts = () => {
