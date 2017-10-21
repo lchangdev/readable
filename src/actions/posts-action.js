@@ -65,11 +65,13 @@ export const increment = (post) => dispatch => {
     });
 }
 
-export const deletePost = (post) => dispatch => {
+export const deletePost = (post, history) => dispatch => {
   return API
     .deletePost(post)
     .then((data) => {
       dispatch(removePost(data));
+
+      history.push('/');
     });
 }
 

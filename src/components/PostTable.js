@@ -1,10 +1,9 @@
 import dateFormat from 'dateformat';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { decrement, increment } from '../actions/posts-action';
+import { decrement, deletePost, increment } from '../actions/posts-action';
 import { Link, withRouter } from 'react-router-dom';
 import Tablesort from 'tablesort';
-import moment from 'moment';
 
 class PostTable extends Component {
   componentDidMount() {
@@ -27,6 +26,12 @@ class PostTable extends Component {
     event.preventDefault();
 
     this.props.history.push(`/post/${post.id}`);
+  }
+
+  onClickDelete(event, post) {
+    event.preventDefault();
+    console.log('post: ', post);
+    this.props.deletePost(post, this.props.history);
   }
 
   render() {
@@ -75,7 +80,7 @@ class PostTable extends Component {
                 {
                     fullDetails &&
                     <td>
-                      <a onClick={(event) => this.props.onClickDelete(event)}>delete</a>
+                      <a onClick={(event) => this.onClickDelete(event, post)}>delete</a>
                     </td>
                 }
               </tr>
@@ -90,6 +95,7 @@ class PostTable extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     decrement: (post) => dispatch(decrement(post)),
+    deletePost: (post, history) => dispatch(deletePost(post, history)),
     increment: (post) => dispatch(increment(post)),
   }
 }
