@@ -3,7 +3,7 @@ import { generateId } from '../helpers/generator';
 /**
  * @todo Migrate over to env variable
  */
-const url = 'http://localhost:5001';
+const url = 'http://localhost:3001';
 
 let token = localStorage.token;
 
