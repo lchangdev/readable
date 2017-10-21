@@ -32,6 +32,7 @@ class PostTable extends Component {
             <th className="center pointer">author</th>
             <th className="center pointer">title</th>
             <th className="center pointer">category</th>
+            <th className="center pointer">comment count</th>
             <th className="center pointer">vote score</th>
             <th />
             <th />
@@ -51,6 +52,7 @@ class PostTable extends Component {
                 <td>{post.author}</td>
                 <td>{post.title}</td>
                 <td>{post.category}</td>
+                <td>{post.commentCount}</td>
                 <td>{post.voteScore}</td>
                 <td className="pointer" onClick={(event) => this.increment(event, post)}>&#43;</td>
                 <td className="pointer" onClick={(event) => this.decrement(event, post)}>&minus;</td>

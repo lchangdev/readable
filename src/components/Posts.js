@@ -23,7 +23,7 @@ class Posts extends Component {
   }
 }
 
-function mapStateToProps({posts}, ownProps) {
+function mapStateToProps({ posts }, ownProps) {
   let filteredPosts = Object.values(posts).filter(post => {
     return post ? !post.deleted : post;
   });
