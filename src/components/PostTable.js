@@ -2,8 +2,9 @@ import dateFormat from 'dateformat';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { decrement, increment } from '../actions/posts-action';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Tablesort from 'tablesort';
+import moment from 'moment';
 
 class PostTable extends Component {
   componentDidMount() {
@@ -22,25 +23,28 @@ class PostTable extends Component {
     this.props.increment(post);
   }
 
+  redirect(event, post) {
+    event.preventDefault();
+
+    this.props.history.push(`/post/${post.id}`);
+  }
+
   render() {
     const { fullDetails } = this.props;
 
     return (
-      <table className="table" id="post-table">
+      <table className="table table-hover" id="post-table">
         <thead>
           <tr>
             <th className="center pointer">author</th>
             <th className="center pointer">title</th>
             <th className="center pointer">category</th>
             <th className="center pointer">comment count</th>
+            <th className="center pointer">timestamp</th>
             <th className="center pointer">vote score</th>
             <th />
             <th />
-            <th className="center pointer">
-              {
-                fullDetails && 'timestamp'
-              }
-            </th>
+            { fullDetails && <th /> }
             { fullDetails && <th /> }
             { fullDetails && <th /> }
           </tr>
@@ -48,21 +52,19 @@ class PostTable extends Component {
         <tbody>
           {
             this.props.posts.map(post => (
-              <tr key={post.id} className="center">
+              <tr
+                key={post.id}
+                className="center pointer"
+                onClick={(event) => this.redirect(event, post)}
+              >
                 <td>{post.author}</td>
                 <td>{post.title}</td>
                 <td>{post.category}</td>
                 <td>{post.commentCount}</td>
+                <td>{dateFormat(post.timestamp, 'fullDate')}</td>
                 <td>{post.voteScore}</td>
                 <td className="pointer" onClick={(event) => this.increment(event, post)}>&#43;</td>
                 <td className="pointer" onClick={(event) => this.decrement(event, post)}>&minus;</td>
-                <td>
-                  {
-                    fullDetails ?
-                      dateFormat(post.timestamp, 'fullDate') :
-                      (<Link to={`/post/${post.id}`}>view</Link>)
-                  }
-                </td>
                 {
                   fullDetails &&
                     <td>
@@ -92,4 +94,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(null, mapDispatchToProps)(PostTable);
+export default withRouter(connect(null, mapDispatchToProps)(PostTable));

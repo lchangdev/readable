@@ -17,6 +17,7 @@ class Posts extends Component {
       <div>
         <h1>Posts</h1>
         <Link to="/post-form/new">Add new post</Link>
+        <p className="lead">Click on the headers to sort or click on a row to view full details</p>
         <PostTable posts={posts} />
       </div>
     );
