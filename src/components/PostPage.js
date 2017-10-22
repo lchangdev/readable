@@ -22,10 +22,7 @@ class PostPage extends Component {
       <div>
         <Link to="/">back</Link>
         <h1>Post Page</h1>
-        <PostTable
-          fullDetails={true}
-          posts={posts}
-        />
+        <PostTable posts={posts} />
         <Comments postId={head(posts).id} />
       </div>
     );

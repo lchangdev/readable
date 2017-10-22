@@ -11,32 +11,36 @@ class PostTable extends Component {
   }
 
   decrement(event, post) {
-    event.preventDefault();
+    event.stopPropagation();
 
     this.props.decrement(post);
   }
 
   increment(event, post) {
-    event.preventDefault();
+    event.stopPropagation();
 
     this.props.increment(post);
   }
 
-  redirect(event, post) {
+  redirectShow(event, post) {
     event.preventDefault();
 
     this.props.history.push(`/post/${post.id}`);
   }
 
+  redirectEdit(event, post) {
+    event.stopPropagation();
+
+    this.props.history.push(`/post-form/edit?postId=${post.id}`);
+  }
+
   onClickDelete(event, post) {
-    event.preventDefault();
-    console.log('post: ', post);
+    event.stopPropagation();
+
     this.props.deletePost(post, this.props.history);
   }
 
   render() {
-    const { fullDetails } = this.props;
-
     return (
       <table className="table table-hover" id="post-table">
         <thead>
@@ -49,9 +53,9 @@ class PostTable extends Component {
             <th className="center pointer">vote score</th>
             <th />
             <th />
-            { fullDetails && <th /> }
-            { fullDetails && <th /> }
-            { fullDetails && <th /> }
+            <th />
+            <th />
+            <th />
           </tr>
         </thead>
         <tbody>
@@ -60,7 +64,7 @@ class PostTable extends Component {
               <tr
                 key={post.id}
                 className="center pointer"
-                onClick={(event) => this.redirect(event, post)}
+                onClick={(event) => this.redirectShow(event, post)}
               >
                 <td>{post.author}</td>
                 <td>{post.title}</td>
@@ -70,19 +74,8 @@ class PostTable extends Component {
                 <td>{post.voteScore}</td>
                 <td className="pointer" onClick={(event) => this.increment(event, post)}>&#43;</td>
                 <td className="pointer" onClick={(event) => this.decrement(event, post)}>&minus;</td>
-                {
-                  fullDetails &&
-                    <td>
-                      <Link to={`/post-form/edit?postId=${post.id}`}>edit</Link>
-                    </td>
-                }
-
-                {
-                    fullDetails &&
-                    <td>
-                      <a onClick={(event) => this.onClickDelete(event, post)}>delete</a>
-                    </td>
-                }
+                <td><a onClick={(event) => this.redirectEdit(event, post)}>edit</a></td>
+                <td><a onClick={(event) => this.onClickDelete(event, post)}>delete</a></td>
               </tr>
             ))
           }
