@@ -7,9 +7,11 @@ export const INCREMENT_COMMENT = 'INCREMENT_COMMENT';
 export const NEW_COMMENT = 'NEW_COMMENT';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 
-export const createComment = (comment, postId) => dispatch => {
+export const createComment = (comment, id) => dispatch => {
+  console.log('comment: ', comment);
+  console.log('id: ', id);
   return API
-    .createComment(comment, postId)
+    .createComment(comment, id)
     .then(data => {
       dispatch({
         type: NEW_COMMENT,

@@ -2,7 +2,7 @@ import dateFormat from 'dateformat';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { decrement, deletePost, increment } from '../actions/posts-action';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Tablesort from 'tablesort';
 
 class PostTable extends Component {

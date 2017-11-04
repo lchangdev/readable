@@ -1,6 +1,6 @@
 import CommentForm from './CommentForm';
 import React, { Component } from 'react';
-import { capitalize, head } from 'lodash';
+import { capitalize, head, isEmpty } from 'lodash';
 import { connect } from 'react-redux';
 import { createComment, fetchComments, updateComment } from '../actions/comments-action';
 import { Link } from 'react-router-dom';
@@ -22,15 +22,16 @@ class CommentFormPage extends Component {
       createComment,
       comment,
       history,
-      postId,
+      id,
       updateComment
     } = this.props;
 
-    comment ? updateComment(values) : createComment(values, postId);
+    console.log('this.props.id: ', id);
+    isEmpty(comment) ? createComment(values, id) : updateComment(values);
 
     return {
       history,
-      postId
+      id
     };
   }
 
@@ -51,23 +52,25 @@ class CommentFormPage extends Component {
 }
 
 function mapStateToProps({comments}, ownProps) {
-  const postId = queryString.parse(ownProps.location.search).postId;
-  const commentId = queryString.parse(ownProps.location.search).commentId;
-  let comment;
+  const id = ownProps.match.params.id;
+  let comment = {};
 
-  if (commentId) {
-    comment = head(Object.values(comments).filter(comment => comment.id === commentId));
+  if (ownProps.match.params.action === 'edit') {
+    comment = head(Object.values(comments).filter(comment => comment.id === id));
   }
+
+  console.log('ownProps.match.params.id: ', ownProps.match.params.id);
+  console.log('id: ', id);
 
   return {
     comment,
-    postId
+    id
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    createComment: (data) => dispatch(createComment(data)),
+    createComment: (data, id) => dispatch(createComment(data, id)),
     fetchComments: () => dispatch(fetchComments()),
     updateComment: (data) => dispatch(updateComment(data))
   }

@@ -43,7 +43,7 @@ export const createComment = (comment, postId) => {
   comment.id = generateId();
   comment.parentId = postId;
   comment.timestamp = Date.now();
-
+  console.log('api postId: ', postId);
   return fetch(`${url}/comments`, {
     method: 'POST',
     headers: {
@@ -56,7 +56,7 @@ export const createComment = (comment, postId) => {
       deleted: false,
       id: comment.id,
       parentDeleted: false,
-      parentId: comment.parentId,
+      parentId: postId,
       timestamp: comment.timestamp,
       voteScore: 1
     })

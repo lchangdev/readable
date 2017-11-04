@@ -33,7 +33,7 @@ class CommentForm extends Component {
 CommentForm = reduxForm({
   form: 'comment',
   onSubmitSuccess: (config) => {
-    config.history.push(`/post/${config.postId}`);
+    config.history.push(`/post/${config.id}`);
   }
 })(CommentForm);
 
