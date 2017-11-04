@@ -15,7 +15,7 @@ class Categories extends Component {
         <ul className="list-group">
           {
             this.props.categories.map(category => (
-              <Link key={category.id} to={`/category/${category.id}`}>
+              <Link key={category.id} to={`/${category.name}`}>
                 <li className="list-group-item">
                   {category.name}
                 </li>

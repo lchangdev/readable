@@ -32,7 +32,7 @@ class CategoryPage extends Component {
 
 function mapStateToProps({categories, posts}, ownProps) {
   const category = head(Object.values(categories).filter(category => (
-    category.id === parseInt(ownProps.match.params.id, 10)
+    category.name === ownProps.match.params.category
   )));
 
   return {

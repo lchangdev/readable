@@ -17,7 +17,7 @@ class App extends Component {
           <Navbar />
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/category/:id" component={CategoryPage} />
+            <Route path="/:category" component={CategoryPage} />
             <Route path="/post-form/:action" component={PostFormPage} />
             <Route path="/post/:id" component={PostPage} />
             <Route path="/comment-form/:action" component={CommentFormPage} />
