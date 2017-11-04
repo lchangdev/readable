@@ -17,10 +17,10 @@ class App extends Component {
           <Navbar />
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/:category" component={CategoryPage} />
-            <Route path="/post-form/:action" component={PostFormPage} />
-            <Route path="/post/:id" component={PostPage} />
-            <Route path="/comment-form/:action" component={CommentFormPage} />
+            <Route exact path="/:category" component={CategoryPage} />
+            <Route exact path="/post-form/:action" component={PostFormPage} />
+            <Route exact path="/:category/:post_id" component={PostPage} />
+            <Route exact path="/comment-form/:action" component={CommentFormPage} />
             <Route component={NotFound} />
           </Switch>
         </div>

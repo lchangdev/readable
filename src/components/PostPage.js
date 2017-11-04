@@ -32,7 +32,7 @@ class PostPage extends Component {
 function mapStateToProps({posts}, ownProps) {
   return {
     posts: Object.values(posts).filter(post => (
-      post.id === ownProps.match.params.id
+      post.id === ownProps.match.params.post_id
     ))
   };
 }

@@ -11,33 +11,28 @@ class Posts extends Component {
   }
 
   render() {
-    const { posts } = this.props;
+    const { category, posts } = this.props;
 
     return(
       <div>
         <h1>Posts</h1>
         <Link to="/post-form/new">Add new post</Link>
         <p className="lead">Click on the headers to sort or click on a row to view full details</p>
-        <PostTable posts={posts} />
+        <PostTable
+          category={category}
+          posts={posts}
+        />
       </div>
     );
   }
 }
 
-function mapStateToProps({ posts }, ownProps) {
-  let filteredPosts = Object.values(posts).filter(post => {
+function mapStateToProps(state, ownProps) {
+  let filteredPosts = Object.values(state.posts).filter(post => {
     return post ? !post.deleted : post;
   });
 
-  if (ownProps.category) {
-    filteredPosts = filteredPosts.filter(post => {
-      return post.category === ownProps.category;
-    });
-  }
-
-  return {
-    posts: sortBy(filteredPosts, (post) => -post.voteScore)
-  };
+  return { posts: sortBy(filteredPosts, (post) => -post.voteScore) };
 }
 
 function mapDispatchToProps(dispatch) {

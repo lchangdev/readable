@@ -25,7 +25,7 @@ class PostTable extends Component {
   redirectShow(event, post) {
     event.preventDefault();
 
-    this.props.history.push(`/post/${post.id}`);
+    this.props.history.push(`/${post.category}/${post.id}`);
   }
 
   redirectEdit(event, post) {
